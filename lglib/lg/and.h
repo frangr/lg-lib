@@ -12,7 +12,7 @@ public:
     AND(int np);
 
     template<typename... T>
-    void inpt(T... b);
+    void inpt(T&&... b);
 
     bit res();
 private:
@@ -21,7 +21,7 @@ private:
 };
 
 template<typename... T>
-void AND::inpt(T... b)
+void AND::inpt(T&&... b)
 {
     bool bb = false;
     bit vc[p] = {std::forward<bit>(b)...};
