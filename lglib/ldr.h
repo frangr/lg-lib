@@ -4,5 +4,5 @@
 #include "and.h"
 #include "or.h"
 #include "ldrf.h"
-//
+
 #endif // LDR_H_INCLUDED
