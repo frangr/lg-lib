@@ -39,9 +39,7 @@ void AND::inpt(T&&... b)
             }
         }
         else
-        {
             bb = true;
-        }
     }
 }
 #endif // AND_H_INCLUDED
