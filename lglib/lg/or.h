@@ -37,9 +37,7 @@ void OR::inpt(T&&... b)
             }
         }
         else
-        {
             bb = true;
-        }
     }
 }
 
