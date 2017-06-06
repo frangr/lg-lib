@@ -26,6 +26,8 @@ void OR::inpt(T&&... b)
     bool bb = false;
     bit vc[p] = {std::forward<bit>(b)...};
 
+    rs = 0;
+
     for(int i=0; !bb; i++)
     {
         if(i<p)
