@@ -7,6 +7,8 @@ int main()
     NAND Nand(2);
     OR Or(2);
     NOR Nor(2);
+    NEGAND Negand(2);
+    NEGOR Negor(2);
 
     std::cout<<"AND TABLE:"<<std::endl;
     And.inpt(0, 0);
@@ -50,5 +52,27 @@ int main()
     std::cout<<Nor.res()<<std::endl;
     Nor.inpt(1, 1);
     std::cout<<Nor.res()<<std::endl;
+    std::cout<<std::endl;
+
+    std::cout<<"NEGAND TABLE:"<<std::endl;
+    Negand.inpt(0, 0);
+    std::cout<<Negand.res()<<std::endl;
+    Negand.inpt(0, 1);
+    std::cout<<Negand.res()<<std::endl;
+    Negand.inpt(1, 0);
+    std::cout<<Negand.res()<<std::endl;
+    Negand.inpt(1, 1);
+    std::cout<<Negand.res()<<std::endl;
+    std::cout<<std::endl;
+
+    std::cout<<"NEGOR TABLE:"<<std::endl;
+    Negor.inpt(0, 0);
+    std::cout<<Negor.res()<<std::endl;
+    Negor.inpt(0, 1);
+    std::cout<<Negor.res()<<std::endl;
+    Negor.inpt(1, 0);
+    std::cout<<Negor.res()<<std::endl;
+    Negor.inpt(1, 1);
+    std::cout<<Negor.res()<<std::endl;
     std::cout<<std::endl;
 }
