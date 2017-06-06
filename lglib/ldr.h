@@ -6,5 +6,7 @@
 #include "or.h"
 #include "nor.h"
 #include "ldrf.h"
+#include "negand.h"
+#include "negor.h"
 
 #endif // LDR_H_INCLUDED
