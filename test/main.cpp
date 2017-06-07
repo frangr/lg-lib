@@ -1,4 +1,4 @@
-#include "lglib/ldr.h"
+#include "ldr.h"
 #include<iostream>
 
 int main()
@@ -12,6 +12,7 @@ int main()
     XOR Xor(2);
     XNOR Xnor(2);
 
+    //truth tables
     std::cout<<"AND TABLE:"<<std::endl;
     And.inpt(0, 0);
     std::cout<<And.res()<<std::endl;
@@ -98,4 +99,27 @@ int main()
     std::cout<<Negor.res()<<std::endl;
     Negor.inpt(1, 1);
     std::cout<<Negor.res()<<std::endl;
+    std::cout<<std::endl;
+
+    //circuit example
+    XOR xr(2);
+    AND ad(2);
+    NAND nad(2);
+    NOR nor(2);
+    NEGAND ngad(2);
+    XNOR xnr(3);
+    NEGOR ngr(3);
+    OR r(2);
+
+    xr.inpt(1, 0);
+    ad.inpt(1, 1);
+    nad.inpt(ldr::NOT(1), ldr::NOT(1));
+    nor.inpt(ldr::NOT(0), 0);
+    ngad.inpt(0, 1);
+
+    xnr.inpt(ldr::NOT(xr.res()), ad.res(), nad.res());
+    ngr.inpt(nor.res(), ldr::NOT(ngad.res()), ngad.res());
+
+    r.inpt(xnr.res(), ngr.res());
+    std::cout<<"circ result: "<<r.res()<<std::endl;
 }
