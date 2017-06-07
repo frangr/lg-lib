@@ -10,7 +10,7 @@ int main()
     NEGAND Negand(2);
     NEGOR Negor(2);
     XOR Xor(2);
-    XNOR Xnor(3);
+    XNOR Xnor(2);
 
     std::cout<<"AND TABLE:"<<std::endl;
     And.inpt(0, 0);
