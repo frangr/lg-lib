@@ -68,21 +68,13 @@ int main()
     std::cout<<std::endl;
 
     std::cout<<"XNOR TABLE:"<<std::endl;
-    Xnor.inpt(0, 0, 0);
+    Xnor.inpt(0, 0);
     std::cout<<Xnor.res()<<std::endl;
-    Xnor.inpt(0, 0, 1);
+    Xnor.inpt(0, 1);
     std::cout<<Xnor.res()<<std::endl;
-    Xnor.inpt(0, 1, 0);
+    Xnor.inpt(1, 0);
     std::cout<<Xnor.res()<<std::endl;
-    Xnor.inpt(0, 1, 1);
-    std::cout<<Xnor.res()<<std::endl;
-    Xnor.inpt(1, 0, 0);
-    std::cout<<Xnor.res()<<std::endl;
-    Xnor.inpt(1, 0, 1);
-    std::cout<<Xnor.res()<<std::endl;
-    Xnor.inpt(1, 1, 0);
-    std::cout<<Xnor.res()<<std::endl;
-    Xnor.inpt(1, 1, 1);
+    Xnor.inpt(1, 1);
     std::cout<<Xnor.res()<<std::endl;
     std::cout<<std::endl;
 
