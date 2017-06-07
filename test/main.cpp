@@ -1,4 +1,4 @@
-#include "lglib/ldr.h"
+#include "ldr.h"
 #include<iostream>
 
 int main()
@@ -9,6 +9,8 @@ int main()
     NOR Nor(2);
     NEGAND Negand(2);
     NEGOR Negor(2);
+    XOR Xor(2);
+    XNOR Xnor(3);
 
     std::cout<<"AND TABLE:"<<std::endl;
     And.inpt(0, 0);
@@ -54,6 +56,36 @@ int main()
     std::cout<<Nor.res()<<std::endl;
     std::cout<<std::endl;
 
+    std::cout<<"XOR TABLE:"<<std::endl;
+    Xor.inpt(0, 0);
+    std::cout<<Xor.res()<<std::endl;
+    Xor.inpt(0, 1);
+    std::cout<<Xor.res()<<std::endl;
+    Xor.inpt(1, 0);
+    std::cout<<Xor.res()<<std::endl;
+    Xor.inpt(1, 1);
+    std::cout<<Xor.res()<<std::endl;
+    std::cout<<std::endl;
+
+    std::cout<<"XNOR TABLE:"<<std::endl;
+    Xnor.inpt(0, 0, 0);
+    std::cout<<Xnor.res()<<std::endl;
+    Xnor.inpt(0, 0, 1);
+    std::cout<<Xnor.res()<<std::endl;
+    Xnor.inpt(0, 1, 0);
+    std::cout<<Xnor.res()<<std::endl;
+    Xnor.inpt(0, 1, 1);
+    std::cout<<Xnor.res()<<std::endl;
+    Xnor.inpt(1, 0, 0);
+    std::cout<<Xnor.res()<<std::endl;
+    Xnor.inpt(1, 0, 1);
+    std::cout<<Xnor.res()<<std::endl;
+    Xnor.inpt(1, 1, 0);
+    std::cout<<Xnor.res()<<std::endl;
+    Xnor.inpt(1, 1, 1);
+    std::cout<<Xnor.res()<<std::endl;
+    std::cout<<std::endl;
+
     std::cout<<"NEGAND TABLE:"<<std::endl;
     Negand.inpt(0, 0);
     std::cout<<Negand.res()<<std::endl;
@@ -74,5 +106,4 @@ int main()
     std::cout<<Negor.res()<<std::endl;
     Negor.inpt(1, 1);
     std::cout<<Negor.res()<<std::endl;
-    std::cout<<std::endl;
 }
