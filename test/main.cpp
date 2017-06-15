@@ -1,4 +1,4 @@
-#include "ldr.h"
+#include "lglib/ldr.h"
 #include<iostream>
 
 int main()
