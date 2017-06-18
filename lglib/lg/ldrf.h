@@ -5,7 +5,6 @@
 
 namespace ldr
 {
-    using byte = unsigned char;
     using bit = bool;
 
     bit NOT(bit bt);
