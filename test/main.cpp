@@ -1,4 +1,4 @@
-#include "lglib/ldr.h"
+#include "ldr.h"
 #include<iostream>
 
 int main()
@@ -122,4 +122,5 @@ int main()
 
     r.inpt(xnr.res(), ngr.res());
     std::cout<<"circ result: "<<r.res()<<std::endl;
+    std::cout<<"binary to decimal test: "<<ldr::btn(0, 0, 1, 1, 0, 1, 1, 0)<<std::endl;
 }
