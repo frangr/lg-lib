@@ -2,22 +2,29 @@
 #define LDRF_H_INCLUDED
 
 #include<iostream>
+#include<vector>
 
 namespace ldr
 {
-    using bit = bool;
+    using bit = bool; //bit
 
-    bit NOT(bit bt);
+    bit NOT(bit bt); //funzione di negazione
 
 
     template<typename... T>
-    int btn(T&&... n);
+    size_t btn(T&&... n); //bit a decimale
+
+    size_t atn(bit vc[], int sz, int spos=0, int idx=0); //array di bit a decimale
+
+    std::vector<bit> nta(size_t n, int vs = 0); //numero a array
+
 }
 
 template<typename... T>
-int ldr::btn(T&&... n)
+size_t ldr::btn(T&&... n)
 {
-    int s = sizeof...(T), pn = 1, bn = 0;
+    int s = sizeof...(T);
+    size_t bn = 0, pn = 1;
     bit vc[s] = {std::forward<bit>(n)...};
 
     while(s--)
