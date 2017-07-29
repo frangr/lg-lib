@@ -1,4 +1,4 @@
-#include "lglib/ldr.h"
+#include "ldr.h"
 #include<iostream>
 
 int main()
@@ -110,6 +110,7 @@ int main()
     XNOR xnr(3);
     NEGOR ngr(3);
     OR r(2);
+    MEM mm(2, 4);
 
     xr.inpt(1, 0);
     ad.inpt(1, 1);
@@ -123,4 +124,30 @@ int main()
     r.inpt(xnr.res(), ngr.res());
     std::cout<<"circ result: "<<r.res()<<std::endl;
     std::cout<<"binary to decimal test: "<<ldr::btn(0, 0, 1, 1, 0, 1, 1, 0)<<std::endl;
+
+    mm.setwd(0, 0, 0, 1);//write data = 0001
+    mm.memf(1, 0, 0);//write 0001 at 00
+
+    mm.setwd(0, 0, 1, 0);//write data = 0010
+    mm.memf(1, 0, 1);//write 0010 at 01
+
+    mm.setwd(0, 1, 0, 0);//write data = 0100
+    mm.memf(1, 1, 0);//write 0001 at 10
+
+    mm.setwd(1, 0, 0, 0);//write data = 1000
+    mm.memf(1, 1, 1);//write 0001 at 11
+
+    mm.memf(0, 0, 1); //read at 01 address
+
+    std::cout<<"read at 01: "<<mm.res(0)<<mm.res(1)<<mm.res(2)<<mm.res(3)<<std::endl;
+
+    ALU al(2, 4); //ALU with two 4-bit-operand
+    al.aluf(0, 0, //00=add, 01=subtract, 10=multiplication, 11=division
+            0, 0, 1, 1,
+            0, 1, 0, 1
+            );
+    std::cout<<"ALU result: "<<al.r_res(3)<<al.r_res(2)<<al.r_res(1)<<al.r_res(0)<<std::endl; //ALU result
+    std::cout<<"zero flag: "<<al.getflag(0)<<std::endl //ALU flags
+             <<"negative flag: "<<al.getflag(1)<<std::endl
+             <<"overflow flag: "<<al.getflag(2);
 }
