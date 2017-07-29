@@ -1,14 +1,16 @@
 #ifndef LDR_H_INCLUDED
 #define LDR_H_INCLUDED
 
-#include "lg/ldrf.h"
-#include "lg/and.h"
-#include "lg/nand.h"
-#include "lg/or.h"
-#include "lg/nor.h"
-#include "lg/negand.h"
-#include "lg/negor.h"
-#include "lg/xor.h"
-#include "lg/xnor.h"
+#include "ldrf.h"
+#include "and.h"
+#include "nand.h"
+#include "or.h"
+#include "nor.h"
+#include "negand.h"
+#include "negor.h"
+#include "xor.h"
+#include "xnor.h"
+#include "mem.h"
+#include "alu.h"
 
 #endif // LDR_H_INCLUDED
