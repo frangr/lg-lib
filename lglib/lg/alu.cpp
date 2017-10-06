@@ -7,8 +7,8 @@ ALU::ALU(int ni, int li):n(ni), l(li) //ni = numero input, li = lunghezza input
 
 bit ALU::r_res(int idx)
 {
-    //return rs[(rs.size() - idx) - 1];
-    return rs[idx];
+    return rs[(rs.size() - idx) - 1];
+    //return rs[idx];
 }
 
 bit ALU::getflag(int idx)
