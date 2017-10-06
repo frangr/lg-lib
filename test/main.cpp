@@ -146,7 +146,7 @@ int main()
             0, 0, 1, 1,
             0, 1, 0, 1
             );
-    std::cout<<"ALU result: "<<al.r_res(3)<<al.r_res(2)<<al.r_res(1)<<al.r_res(0)<<std::endl; //ALU result
+    std::cout<<"ALU result: "<<al.r_res(0)<<al.r_res(1)<<al.r_res(2)<<al.r_res(3)<<std::endl; //ALU result
     std::cout<<"zero flag: "<<al.getflag(0)<<std::endl //ALU flags
              <<"negative flag: "<<al.getflag(1)<<std::endl
              <<"overflow flag: "<<al.getflag(2);
