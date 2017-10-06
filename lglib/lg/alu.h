@@ -24,7 +24,7 @@ public:
     bit getflag(int idx);//mostra flag: 0-zero, 1-negative, 2-overflow
 private:
     int n, l;
-    bit flag[4] = {0, 0, 0, 0}; //alu flag
+    bit flag[3] = {0, 0, 0}; //alu flag
     std::vector<bit> rs; //sequenza di bit risultante da operazione
 };
 
