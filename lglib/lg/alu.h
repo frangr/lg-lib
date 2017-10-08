@@ -1,7 +1,6 @@
 #ifndef ALU_H_INCLUDED
 #define ALU_H_INCLUDED
 
-#include<iostream>
 #include<vector>
 #include<math.h>
 #include "ldrf.h"
