@@ -153,7 +153,8 @@ int main()
 
     MUL ml(2, 2);
 
-    ml.mulf(0, 0, 1, 1);
+    ml.mulf(0, 0,
+            1, 1);
 
     ml.muln(0);
     std::cout<<"multiplexer 0: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
