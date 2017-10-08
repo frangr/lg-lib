@@ -1,4 +1,4 @@
-#include "lglib/ldr.h"
+#include "ldr.h"
 #include<iostream>
 
 int main()
@@ -143,11 +143,20 @@ int main()
 
     ALU al(2, 4); //ALU with two 4-bit-operand
     al.aluf(0, 0, //00=add, 01=subtract, 10=multiplication, 11=division
-            0, 0, 1, 1,
-            0, 1, 0, 1
+            0, 0, 1, 0,
+            0, 0, 0, 1
             );
     std::cout<<"ALU result: "<<al.r_res(0)<<al.r_res(1)<<al.r_res(2)<<al.r_res(3)<<std::endl; //ALU result
     std::cout<<"zero flag: "<<al.getflag(0)<<std::endl //ALU flags
              <<"negative flag: "<<al.getflag(1)<<std::endl
-             <<"overflow flag: "<<al.getflag(2);
+             <<"overflow flag: "<<al.getflag(2)<<std::endl;
+
+    MUL ml(2, 2);
+
+    ml.mulf(0, 0, 1, 1);
+
+    ml.muln(0);
+    std::cout<<"multiplexer 0: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
+    ml.muln(1);
+    std::cout<<"multiplexer 1: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
 }
