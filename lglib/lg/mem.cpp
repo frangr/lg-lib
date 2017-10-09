@@ -1,6 +1,5 @@
 #include "mem.h"
 #include<math.h>
-#include<iostream>
 
 MEM::MEM(int siz, int dat):sz(dat)
 {
