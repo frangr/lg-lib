@@ -2,7 +2,6 @@
 #define NOR_H_INCLUDED
 
 #include "ldrf.h"
-#include<iostream>
 
 using namespace ldr;
 
