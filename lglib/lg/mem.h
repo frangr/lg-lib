@@ -3,7 +3,6 @@
 
 #include "ldrf.h"
 #include<vector>
-#include<iostream>
 
 using namespace ldr;
 
