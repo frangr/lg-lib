@@ -2,7 +2,6 @@
 #define XOR_H_INCLUDED
 
 #include "ldrf.h"
-#include<iostream>
 
 using namespace ldr;
 
