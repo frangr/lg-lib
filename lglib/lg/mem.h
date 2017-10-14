@@ -2,7 +2,7 @@
 #define MEM_H_INCLUDED
 
 #include "ldrf.h"
-#include<vector>
+#include<iostream>
 
 using namespace ldr;
 
@@ -19,10 +19,10 @@ public:
 
     bit res(int idx); //parola letta
 private:
-    std::vector<bit> v1; //vettore contenente dati
+    bit* v1; //puntatore array dati
     int sz = 0;
-    std::vector<bit> rs; //vettore risultato
-    std::vector<bit> wd; //write data
+    bit* rs; //puntatore array risultato
+    bit* wd; //write data
 };
 
 template<typename... T>
@@ -33,19 +33,23 @@ void MEM::memf(bit fl, T&&... adr)//, T&&... wdat)
     if(fl) //write
     {
         for(int i=0; i<sz; i++)
-            v1[ar+i] = wd[i];
+            v1[(ar*sz)+i] = wd[i];
     }
     else //read
     {
+
         for(int i=0; i<sz; i++)
-            rs[i] = v1[ar+i];
+            rs[i] = v1[(ar*sz)+i];
     }
 }
 
 template<typename... T>
 void MEM::setwd(T&&... wdt)
 {
-    wd = {std::forward<bit>(wdt)...};
+    bit bf[] = {std::forward<bit>(wdt)...};
+
+    for(int i=0; i<sz; i++)
+        wd[i] = bf[i];
 }
 
 #endif // MEM_H_INCLUDED
