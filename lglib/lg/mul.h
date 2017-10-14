@@ -10,6 +10,8 @@ class MUL //multiplexer
 public:
     MUL(int nd, int lb);
 
+    ~MUL();
+
     template<typename... T>
     void mulf(T... ipt);
 
