@@ -34,7 +34,6 @@ void ALU::aluf(bit op1, bit op2, T&&... ipt)
     size_t res = 0;
     bit bf[sz] = {std::forward<bit>(ipt)...};
     bool bl;
-    std::vector<bit> bvec(n);
 
     int a = n;
     while(a--)
