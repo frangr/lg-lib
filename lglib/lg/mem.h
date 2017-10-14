@@ -11,6 +11,8 @@ class MEM
 public:
     MEM(int siz, int dat); //numero dati e loro lunghezza
 
+    ~MEM();
+
     template<typename... T>
     void memf(bit fl, T&&... adr); //flag lettura/scrittura e indirizzo
 

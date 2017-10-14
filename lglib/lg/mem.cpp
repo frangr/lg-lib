@@ -9,6 +9,13 @@ MEM::MEM(int siz, int dat):sz(dat)
     wd = new bit[dat];
 }
 
+MEM::~MEM()
+{
+    delete [] v1;
+    delete [] rs;
+    delete [] wd;
+}
+
 bit MEM::res(int idx)
 {
     return rs[idx];
