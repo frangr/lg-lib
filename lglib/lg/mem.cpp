@@ -1,12 +1,10 @@
 #include "mem.h"
 #include<math.h>
 
-MEM::MEM(int siz, int dat):sz(dat)
+MEM::MEM(int siz, int dat):sz(dat), rs(new bit[dat]), wd(new bit[dat])
 {
     int pw = pow(2, siz);
     v1 = new bit[pw*dat];
-    rs = new bit[dat];
-    wd = new bit[dat];
 }
 
 MEM::~MEM()
