@@ -125,39 +125,48 @@ int main()
     std::cout<<"circ result: "<<r.res()<<std::endl;
     std::cout<<"binary to decimal test: "<<ldr::btn(0, 0, 1, 1, 0, 1, 1, 0)<<std::endl;
 
+    mm.set_rw(1); //set read/write control bit with 1 (write)
+
     mm.setwd(0, 0, 0, 1);//write data = 0001
-    mm.memf(1, 0, 0);//write 0001 at 00
+    mm.memf(0, 0);//write 0001 at 00
 
     mm.setwd(0, 0, 1, 0);//write data = 0010
-    mm.memf(1, 0, 1);//write 0010 at 01
+    mm.memf(0, 1);//write 0010 at 01
 
     mm.setwd(0, 1, 0, 0);//write data = 0100
-    mm.memf(1, 1, 0);//write 0001 at 10
+    mm.memf(1, 0);//write 0100 at 10
 
     mm.setwd(1, 0, 0, 0);//write data = 1000
-    mm.memf(1, 1, 1);//write 0001 at 11
+    mm.memf(1, 1);//write 1000 at 11
 
-    mm.memf(0, 0, 1); //read at 01 address
+    mm.set_rw(0); //set read/write control bit with 0 (read)
+
+    mm.memf(0, 1); //read at 01 address
 
     std::cout<<"read at 01: "<<mm.res(0)<<mm.res(1)<<mm.res(2)<<mm.res(3)<<std::endl;
 
-    ALU al(2, 4); //ALU with two 4-bit-operand
-    al.aluf(0, 0, //00=add, 01=subtract, 10=multiplication, 11=division
+    ALU al(4); //ALU with two 4-bit-operand
+
+    al.set_op(1, 1); //00=add, 01=subtract, 10=multiplication, 11=division
+
+    al.aluf(//ALU operands
             0, 0, 1, 0,
             0, 0, 0, 1
             );
     std::cout<<"ALU result: "<<al.r_res(0)<<al.r_res(1)<<al.r_res(2)<<al.r_res(3)<<std::endl; //ALU result
     std::cout<<"zero flag: "<<al.getflag(0)<<std::endl //ALU flags
              <<"negative flag: "<<al.getflag(1)<<std::endl
-             <<"overflow flag: "<<al.getflag(2)<<std::endl;
+             <<"overflow flag: "<<al.getflag(2)<<std::endl
+             <<"division by zero flag: "<<al.getflag(3)<<std::endl;
 
-    MUL ml(2, 2);
+    MUL ml(2, 2); //multiplexer with two 2-bit inputs
 
-    ml.mulf(0, 0,
+    ml.mulf(0, 0, //input data
             1, 1);
 
-    ml.muln(0);
+    ml.muln(0); //00
     std::cout<<"multiplexer 0: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
-    ml.muln(1);
+    ml.muln(1); //11
     std::cout<<"multiplexer 1: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
 }
+
