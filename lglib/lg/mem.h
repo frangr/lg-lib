@@ -2,7 +2,6 @@
 #define MEM_H_INCLUDED
 
 #include "ldrf.h"
-#include<iostream>
 
 using namespace ldr;
 
@@ -13,8 +12,10 @@ public:
 
     ~MEM();
 
+    void set_rw(bit rwf);
+
     template<typename... T>
-    void memf(bit fl, T&&... adr); //flag lettura/scrittura e indirizzo
+    void memf(T&&... adr); //flag lettura/scrittura e indirizzo
 
     template<typename... T>
     void setwd(T&&... wdt); //dati da scrivere
@@ -25,10 +26,11 @@ private:
     int sz = 0;
     bit* rs; //puntatore array risultato
     bit* wd; //write data
+    bit fl = 0; //read/write flag
 };
 
 template<typename... T>
-void MEM::memf(bit fl, T&&... adr)//, T&&... wdat)
+void MEM::memf(T&&... adr)//, T&&... wdat)
 {
     int ar = ldr::btn(adr...);
 
@@ -48,7 +50,7 @@ void MEM::memf(bit fl, T&&... adr)//, T&&... wdat)
 template<typename... T>
 void MEM::setwd(T&&... wdt)
 {
-    bit bf[] = {std::forward<bit>(wdt)...};
+    bit bf[sz] = {std::forward<bit>(wdt)...};
 
     for(int i=0; i<sz; i++)
         wd[i] = bf[i];

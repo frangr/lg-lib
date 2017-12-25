@@ -1,92 +1,149 @@
 #ifndef ALU_H_INCLUDED
 #define ALU_H_INCLUDED
 
-#include<vector>
-#include<math.h>
 #include "ldrf.h"
 
 using namespace ldr;
 
-//costruttore: lunghezza input, numero input
+//costruttore: lunghezza input
 //aluf: operazione, input
 //risultato: vettore risultato, vettore flag
 class ALU
 {
 public:
-    ALU(int li, int ni);
+    ALU(int li);
+
+    ~ALU();
+
+    void set_op(bit ope1, bit ope2);
 
     template<typename... T>
-    void aluf(bit op1, bit op2, T&&... ipt);//2 bit per decidere operazione + dati da inserire
+    void aluf(T&&... ipt);
 
-    bit r_res(int idx);//da il risultato
+    bit r_res(int idx);
 
-    bit getflag(int idx);//mostra flag: 0-zero, 1-negative, 2-overflow
+    bit getflag(int idx);
+
+
 private:
-    int n, l;
-    bit flag[3] = {0, 0, 0}; //alu flag
-    std::vector<bit> rs; //sequenza di bit risultante da operazione
+
+    void add(bit bf[]);
+    void uadd(bit bf[]);
+
+    void sub(bit bf[]);
+    void usub(bit bf[]);
+
+    int l;
+    bit flag[4] = {}; //alu flag: 0-zero flag, 1-negative flag, 2-overflow flag, 3-division by zero flag
+    bit* rs;
+    bit op1 = 0, op2 = 0;
 };
 
 template<typename... T>
-void ALU::aluf(bit op1, bit op2, T&&... ipt)
+void ALU::aluf(T&&... ipt)
 {
-    int sz = l*n, ni = 0;
-    size_t res = 0;
-    bit bf[sz] = {std::forward<bit>(ipt)...};
-    bool bl;
+    bit bf[l*2] = {std::forward<bit>(ipt)...};
 
-    int a = n;
-    while(a--)
+    if(!op1 && !op2) //addizione
     {
-        if(!op1 && !op2) //addizione
-            res += ldr::atn(bf, sz, ni, l);
-        if(!op1 && op2) //sottrazione
-        {
-            if(!res)
-            {
-                res = ldr::atn(bf, sz, ni, l);
-            }
-            else
-            {
-                res -= ldr::atn(bf, sz, ni, l);
-            }
-        }
-        if(op1 && !op2) //moltiplicazione
-        {
-            if(!res)
-                res = 1;
-            res *= ldr::atn(bf, sz, ni, l);
-        }
-        if(op1 && op2) //divisione
-        {
-            if(!bl)
-            {
-                res = ldr::atn(bf, sz, ni, l);
-                bl = true;
-            }
-            else
-                res /= ldr::atn(bf, sz, ni, l);
-        }
-
-        ni += l;
+        add(bf);
     }
 
-    if(!res) //ZERO FLAG
+    if(!op1 && op2) //sottrazione
+    {
+        sub(bf);
+    }
+
+    if(op1 && !op2) //moltiplicazione
+    {
+        int zca = 0, zcb = 0; //conta degli zeri
+
         flag[0] = 1;
-    if(res < 0) //NEGATIVE FLAG
-    {
-        flag[1] = 1;
-        res = 0;
+
+        bool cp = false, cs = false;
+
+        for(int i = (l*2)-1; i>=l && !cp; i--)
+        {
+            if(bf[i] == 1) //se viene trovato un 1 in B, moltiplicatore
+            {
+                zca = 0;
+
+                for(int id = l-1; id>=0 && !cs; id--) //viene cercato un 1 anche in A, moltiplicando
+                {
+                    if(bf[id] == 1) //se viene trovato
+                    {
+                        if(zca+zcb >= l)
+                        {
+                            flag[2] = 1;
+                            cs = true;
+                            cp = true;
+                        }
+                        bit trb[l] = {};
+                        trb[(l-1)-(zca+zcb)] = 1; //crea array da sommare
+                        uadd(trb);
+                    }
+                    zca++;
+                }
+            }
+            zcb++; //conta gli zeri prima di 1 in B
+        }
     }
 
-    if(res > (pow(2, l))-1) //OVERFLOW FLAG
+    if(op1 && op2) //divisione
     {
-        flag[2] = 1;
-        res = (pow(2, l))-1;
+        int cnt = 0;
 
+        bit divb[l] = {};
+
+        flag[3] = 1;
+
+        for(int i = l-1; i>=0; i--)
+        {
+            int id = l+i;
+
+            if(bf[id] == 1) //se nel divisore c'è un 1
+            {
+                flag[3] = 0;
+            }
+
+            rs[i] = bf[i]; //a rs viene assegnato primo operando
+            divb[i] = bf[id];
+        }
+
+        if(!flag[3])
+        {
+            while(flag[0] == 0 && flag[1] == 0)
+            {
+                usub(divb);
+                cnt++;
+            }
+
+            if(flag[1] == 1)
+            {
+                cnt--; //se c'è resto, risultato viene scalato di 1
+                flag[1] = 0;
+            }
+
+            for(int i = 0; i<l; i++)
+            {
+                rs[i] = 0;
+            }
+
+            if(cnt)
+            {
+                bit rsi[l] = {};
+                rsi[l-1] = 1;
+
+                while(cnt--)
+                {
+                    uadd(rsi);
+                }
+            }
+            else
+            {
+                flag[0] = 1; //se cnt è 0 e non aggiunge nessun 1 allora risultato divisione è 0 e setta flag
+            }
+        }
     }
-
-    rs = ldr::nta(res, l);
 }
-
 #endif // ALU_H_INCLUDED
