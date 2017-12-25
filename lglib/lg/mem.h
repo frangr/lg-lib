@@ -41,7 +41,6 @@ void MEM::memf(T&&... adr)//, T&&... wdat)
     }
     else //read
     {
-
         for(int i=0; i<sz; i++)
             rs[i] = v1[(ar*sz)+i];
     }
