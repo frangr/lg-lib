@@ -44,6 +44,9 @@ void ALU::aluf(T&&... ipt)
 {
     bit bf[l*2] = {std::forward<bit>(ipt)...};
 
+    for(int i = 0; i<l; i++)
+        rs[i] = 0;
+
     if(!op1 && !op2) //addizione
     {
         add(bf);

@@ -2,8 +2,8 @@
 
 ALU::ALU(int li):l(li), rs(new bit[l]) //li = lunghezza input
 {
-    for(int i = 0; i<l; i++)
-        rs[i] = 0;
+    //for(int i = 0; i<li; i++)
+        //rs[i] = 0;
 }
 
 ALU::~ALU()
