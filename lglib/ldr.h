@@ -13,5 +13,8 @@
 #include "mem.h"
 #include "alu.h"
 #include "mul.h"
+#include "dmul.h"
+#include "enc.h"
+#include "dek.h"
 
 #endif // LDR_H_INCLUDED
