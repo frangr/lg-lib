@@ -147,11 +147,11 @@ int main()
 
     ALU al(4); //ALU with two 4-bit-operand
 
-    al.set_op(1, 1); //00=add, 01=subtract, 10=multiplication, 11=division
+    al.set_op(0, 0); //00=add, 01=subtract, 10=multiplication, 11=division
 
     al.aluf(//ALU operands
-            0, 0, 1, 0,
-            0, 0, 0, 1
+            0, 1, 1, 1,
+            0, 0, 1, 0
             );
     std::cout<<"ALU result: "<<al.r_res(0)<<al.r_res(1)<<al.r_res(2)<<al.r_res(3)<<std::endl; //ALU result
     std::cout<<"zero flag: "<<al.getflag(0)<<std::endl //ALU flags
@@ -168,5 +168,32 @@ int main()
     std::cout<<"multiplexer 0: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
     ml.muln(1); //11
     std::cout<<"multiplexer 1: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
+
+    DMUL dm(2, 4);
+    DEC  dc(2, 4);
+    ENC  ec(4, 2);
+
+    dm.setin(1, 1);
+    dm.setln(1, 1);
+
+    std::cout<<"Demultiplexer output: "
+             <<dm.m_res(0)
+             <<dm.m_res(1)
+             <<"-"
+             <<dm.m_res(2)
+             <<dm.m_res(3)
+             <<"-"
+             <<dm.m_res(4)
+             <<dm.m_res(5)
+             <<"-"
+             <<dm.m_res(6)
+             <<dm.m_res(7)<<std::endl;
+
+    dc.setin(1, 1);
+
+    std::cout<<"Decoder output: "<<dc.d_res(0)<<"-"<<dc.d_res(1)<<"-"<<dc.d_res(2)<<"-"<<dc.d_res(3)<<std::endl;
+
+    ec.setin(0, 1, 0, 0);
+    std::cout<<"Encoder output: "<<ec.e_res(0)<<ec.e_res(1)<<std::endl;
 }
 
