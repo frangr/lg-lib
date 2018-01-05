@@ -101,7 +101,7 @@ int main()
     std::cout<<Negor.res()<<std::endl;
     std::cout<<std::endl;
 
-    //circuit example
+    //circuit example, circuit located at test/crc.png
     XOR xr(2);
     AND ad(2);
     NAND nad(2);
