@@ -15,7 +15,7 @@ public:
     template<typename... T>
     void setin(T&&... ipt); //set input
 
-    bit d_res(int offst);
+    bit d_res(int offst) const;
 
 private:
     int ld, lo = 0;

@@ -2,7 +2,4 @@
 
 NOR::NOR(int np):p(np){}
 
-bit NOR::res()
-{
-    return rs;
-}
+bit NOR::res() const {return rs;}

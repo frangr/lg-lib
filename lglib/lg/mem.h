@@ -20,10 +20,10 @@ public:
     template<typename... T>
     void setwd(T&&... wdt); //dati da scrivere
 
-    bit res(int idx); //parola letta
+    bit res(int idx) const; //parola letta
 private:
     bit* v1; //puntatore array dati
-    int sz = 0;
+    int sz;
     bit* rs; //puntatore array risultato
     bit* wd; //write data
     bit fl = 0; //read/write flag

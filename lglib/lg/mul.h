@@ -13,22 +13,22 @@ public:
     ~MUL();
 
     template<typename... T>
-    void mulf(T... ipt);
+    void mulf(T&&... ipt);
 
     template<typename... T>
-    void muln(T... bc);
+    void muln(T&&... bc);
 
-    bit m_res(int offst);
+    bit m_res(int offst) const;
 
 private:
-    int la = 0;
+    int la;
     bit* ip;
     int posi = 0;
-    int lgd = 0;
+    int lgd;
 };
 
 template<typename... T>
-void MUL::mulf(T... ipt)
+void MUL::mulf(T&&... ipt)
 {
     bit vc[la] = {std::forward<bit>(ipt)...};
 
@@ -37,7 +37,7 @@ void MUL::mulf(T... ipt)
 }
 
 template<typename... T>
-void MUL::muln(T... bc)
+void MUL::muln(T&&... bc)
 {
     bit vc[] = {std::forward<bit>(bc)...};
 

@@ -2,7 +2,4 @@
 
 XNOR::XNOR(int np):p(np){}
 
-bit XNOR::res()
-{
-    return rs;
-}
+bit XNOR::res() const {return rs;}

@@ -2,7 +2,4 @@
 
 OR::OR(int np):p(np){}
 
-bit OR::res()
-{
-    return rs;
-}
+bit OR::res() const {return rs;}

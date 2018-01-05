@@ -20,9 +20,9 @@ public:
     template<typename... T>
     void aluf(T&&... ipt);
 
-    bit r_res(int idx);
+    bit r_res(int idx) const;
 
-    bit getflag(int idx);
+    bit getflag(int idx) const;
 
 
 private:
@@ -47,15 +47,14 @@ void ALU::aluf(T&&... ipt)
     for(int i = 0; i<l; i++)
         rs[i] = 0;
 
+    for(int i = 0; i<4; i++)
+        flag[i] = 0;
+
     if(!op1 && !op2) //addizione
-    {
         add(bf);
-    }
 
     if(!op1 && op2) //sottrazione
-    {
         sub(bf);
-    }
 
     if(op1 && !op2) //moltiplicazione
     {
@@ -104,7 +103,7 @@ void ALU::aluf(T&&... ipt)
         {
             int id = l+i;
 
-            if(bf[id] == 1) //se nel divisore c'Ã¨ un 1
+            if(bf[id] == 1) //se nel divisore c'è un 1
             {
                 flag[3] = 0;
             }
@@ -123,7 +122,7 @@ void ALU::aluf(T&&... ipt)
 
             if(flag[1] == 1)
             {
-                cnt--; //se c'Ã¨ resto, risultato viene scalato di 1
+                cnt--; //se c'è resto, risultato viene scalato di 1
                 flag[1] = 0;
             }
 
@@ -144,7 +143,7 @@ void ALU::aluf(T&&... ipt)
             }
             else
             {
-                flag[0] = 1; //se cnt Ã¨ 0 e non aggiunge nessun 1 allora risultato divisione Ã¨ 0 e setta flag
+                flag[0] = 1; //se cnt è 0 e non aggiunge nessun 1 allora risultato divisione è 0 e setta flag
             }
         }
     }

@@ -2,7 +2,4 @@
 
 AND::AND(int np):p(np){}
 
-bit AND::res()
-{
-    return rs;
-}
+bit AND::res() const {return rs;}

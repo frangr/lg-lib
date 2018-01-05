@@ -2,7 +2,4 @@
 
 NEGOR::NEGOR(int np):p(np){}
 
-bit NEGOR::res()
-{
-    return rs;
-}
+bit NEGOR::res() const {return rs;}

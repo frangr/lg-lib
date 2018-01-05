@@ -13,17 +13,17 @@ public:
     template<typename... T>
     void inpt(T&&... b);
 
-    bit res();
+    bit res() const;
 private:
-    int p = 0;
+    int p;
     bit rs = 0;
 };
 
 template<typename... T>
 void OR::inpt(T&&... b)
 {
-    bool bb = false;
     bit vc[p] = {std::forward<bit>(b)...};
+    bool bb = false;
 
     rs = 0;
 

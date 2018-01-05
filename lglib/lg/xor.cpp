@@ -2,7 +2,4 @@
 
 XOR::XOR(int np):p(np){}
 
-bit XOR::res()
-{
-    return rs;
-}
+bit XOR::res() const {return rs;}

@@ -2,7 +2,4 @@
 
 NAND::NAND(int np):p(np){}
 
-bit NAND::res()
-{
-    return rs;
-}
+bit NAND::res() const {return rs;}

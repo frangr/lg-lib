@@ -2,7 +2,4 @@
 
 NEGAND::NEGAND(int np):p(np){}
 
-bit NEGAND::res()
-{
-    return rs;
-}
+bit NEGAND::res() const {return rs;}

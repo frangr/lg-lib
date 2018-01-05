@@ -15,12 +15,6 @@ DEC::DEC(int li, int no):ld(li)
     */
 }
 
-DEC::~DEC()
-{
-    delete [] ip;
-}
+DEC::~DEC() {delete [] ip;}
 
-bit DEC::d_res(int offst)
-{
-    return ip[offst];
-}
+bit DEC::d_res(int offst) const {return ip[offst];}

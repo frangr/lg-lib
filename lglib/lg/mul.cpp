@@ -6,12 +6,6 @@ MUL::MUL(int nd, int lb):la(lb*nd), ip(new bit[la]), lgd(lb)
         ip[i] = 0;
 }
 
-MUL::~MUL()
-{
-    delete [] ip;
-}
+MUL::~MUL() {delete [] ip;}
 
-ldr::bit MUL::m_res(int offst)
-{
-    return ip[posi+offst];
-}
+bit MUL::m_res(int offst) const {return ip[posi+offst];}

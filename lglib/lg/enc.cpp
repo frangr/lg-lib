@@ -19,12 +19,6 @@ ENC::ENC(int li, int no):ld(li)
         ip[i] = 0;
 }
 
-ENC::~ENC()
-{
-    delete [] ip;
-}
+ENC::~ENC() {delete [] ip;}
 
-bit ENC::e_res(int offst)
-{
-    return ip[offst];
-}
+bit ENC::e_res(int offst) const {return ip[offst];}

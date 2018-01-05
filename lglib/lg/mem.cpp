@@ -22,12 +22,6 @@ MEM::~MEM()
     delete [] wd;
 }
 
-void MEM::set_rw(bit rwf)
-{
-    fl = rwf;
-}
+void MEM::set_rw(bit rwf) {fl = rwf;}
 
-bit MEM::res(int idx)
-{
-    return rs[idx];
-}
+bit MEM::res(int idx) const {return rs[idx];}

@@ -18,7 +18,7 @@ public:
     template<typename... T>
     void setln(T&&... bc); //set lane
 
-    bit m_res(int offst);
+    bit m_res(int offst) const;
 
 private:
     int lip;

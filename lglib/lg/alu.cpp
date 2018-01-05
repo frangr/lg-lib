@@ -1,15 +1,8 @@
 #include "alu.h"
 
-ALU::ALU(int li):l(li), rs(new bit[l]) //li = lunghezza input
-{
-    //for(int i = 0; i<li; i++)
-        //rs[i] = 0;
-}
+ALU::ALU(int li):l(li), rs(new bit[l]) {} //li = lunghezza input
 
-ALU::~ALU()
-{
-    delete [] rs;
-}
+ALU::~ALU() {delete [] rs;}
 
 void ALU::set_op(bit ope1, bit ope2)
 {
@@ -17,16 +10,10 @@ void ALU::set_op(bit ope1, bit ope2)
     op2 = ope2;
 }
 
-bit ALU::r_res(int idx)
-{
-    //return rs[(rs.size() - idx) - 1];
-    return rs[idx];
-}
+//return rs[(rs.size() - idx) - 1];
+bit ALU::r_res(int idx) const {return rs[idx];}
 
-bit ALU::getflag(int idx)
-{
-    return flag[idx];
-}
+bit ALU::getflag(int idx) const {return flag[idx];}
 
 void ALU::add(bit bf[]) //nci = numero cicli
 {
@@ -44,15 +31,15 @@ void ALU::add(bit bf[]) //nci = numero cicli
     {
         if(bf[cou] == 1 && bf[l+cou] == 1) // se A = 1 e B = 1
         {
-            rs[cou] = carry; //prende il valore di carry prima che venga ri-settato, perchÃ¨ se A=1, B=1, carry = 1, allora rs = 1, carry = 1 e se A=1, B=1, carry = 0, allora rs = 0, carry = 1
-            carry = 1; //carry Ã¨ 1 se A=1 e B=1
+            rs[cou] = carry; //prende il valore di carry prima che venga ri-settato, perchè se A=1, B=1, carry = 1, allora rs = 1, carry = 1 e se A=1, B=1, carry = 0, allora rs = 0, carry = 1
+            carry = 1; //carry è 1 se A=1 e B=1
         }
         else if(bf[cou] != bf[l+cou])//se A o B sono = 1
         {
             if(carry == 1) //Se carry = 1
             {
                 carry = 1;
-                rs[cou] = 0; //carry sarÃ  1 e rs 0 perchÃ¨ se A != B, carry = 1, allora rs = 0, carry = 1
+                rs[cou] = 0; //carry sarà 1 e rs 0 perchè se A != B, carry = 1, allora rs = 0, carry = 1
             }
             else
             {
@@ -66,9 +53,7 @@ void ALU::add(bit bf[]) //nci = numero cicli
         }
 
         if(cou == 0 && carry == 1) //OVERFLOW FLAG i == l && carry == 1 i == l-1 && i = l-1 && rs[i] == 1 && bf[spos] == 1
-        {
             flag[2] = 1; //setta overflow flag a 1
-        }
     }
 
     if(!flag[2])
@@ -99,15 +84,15 @@ void ALU::uadd(bit bf[]) //nci = numero cicli
     {
         if(bf[cou] == 1 && rs[cou] == 1) // se A = 1 e B = 1
         {
-            rs[cou] = carry; //prende il valore di carry prima che venga ri-settato, perchÃ¨ se A=1, B=1, carry = 1, allora rs = 1, carry = 1 e se A=1, B=1, carry = 0, allora rs = 0, carry = 1
-            carry = 1; //carry Ã¨ 1 se A=1 e B=1
+            rs[cou] = carry; //prende il valore di carry prima che venga ri-settato, perchè se A=1, B=1, carry = 1, allora rs = 1, carry = 1 e se A=1, B=1, carry = 0, allora rs = 0, carry = 1
+            carry = 1; //carry è 1 se A=1 e B=1
         }
         else if(bf[cou] != rs[cou])//se A o B sono = 1
         {
             if(carry == 1) //Se carry = 1
             {
                     carry = 1;
-                    rs[cou] = 0; //carry sarÃ  1 e rs 0 perchÃ¨ se A != B, carry = 1, allora rs = 0, carry = 1
+                    rs[cou] = 0; //carry sarà 1 e rs 0 perchè se A != B, carry = 1, allora rs = 0, carry = 1
             }
             else
             {

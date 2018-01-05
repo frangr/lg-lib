@@ -13,9 +13,9 @@ public:
     template<typename... T>
     void inpt(T&&... b);
 
-    bit res();
+    bit res() const;
 private:
-    int p = 0;
+    int p;
     bit rs = 0;
 };
 
