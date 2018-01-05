@@ -44,15 +44,15 @@ void ALU::add(bit bf[]) //nci = numero cicli
     {
         if(bf[cou] == 1 && bf[l+cou] == 1) // se A = 1 e B = 1
         {
-            rs[cou] = carry; //prende il valore di carry prima che venga ri-settato, perchË se A=1, B=1, carry = 1, allora rs = 1, carry = 1 e se A=1, B=1, carry = 0, allora rs = 0, carry = 1
-            carry = 1; //carry Ë 1 se A=1 e B=1
+            rs[cou] = carry; //prende il valore di carry prima che venga ri-settato, perch√® se A=1, B=1, carry = 1, allora rs = 1, carry = 1 e se A=1, B=1, carry = 0, allora rs = 0, carry = 1
+            carry = 1; //carry √® 1 se A=1 e B=1
         }
         else if(bf[cou] != bf[l+cou])//se A o B sono = 1
         {
             if(carry == 1) //Se carry = 1
             {
                 carry = 1;
-                rs[cou] = 0; //carry sar‡ 1 e rs 0 perchË se A != B, carry = 1, allora rs = 0, carry = 1
+                rs[cou] = 0; //carry sar√† 1 e rs 0 perch√® se A != B, carry = 1, allora rs = 0, carry = 1
             }
             else
             {
@@ -99,15 +99,15 @@ void ALU::uadd(bit bf[]) //nci = numero cicli
     {
         if(bf[cou] == 1 && rs[cou] == 1) // se A = 1 e B = 1
         {
-            rs[cou] = carry; //prende il valore di carry prima che venga ri-settato, perchË se A=1, B=1, carry = 1, allora rs = 1, carry = 1 e se A=1, B=1, carry = 0, allora rs = 0, carry = 1
-            carry = 1; //carry Ë 1 se A=1 e B=1
+            rs[cou] = carry; //prende il valore di carry prima che venga ri-settato, perch√® se A=1, B=1, carry = 1, allora rs = 1, carry = 1 e se A=1, B=1, carry = 0, allora rs = 0, carry = 1
+            carry = 1; //carry √® 1 se A=1 e B=1
         }
         else if(bf[cou] != rs[cou])//se A o B sono = 1
         {
             if(carry == 1) //Se carry = 1
             {
                     carry = 1;
-                    rs[cou] = 0; //carry sar‡ 1 e rs 0 perchË se A != B, carry = 1, allora rs = 0, carry = 1
+                    rs[cou] = 0; //carry sar√† 1 e rs 0 perch√® se A != B, carry = 1, allora rs = 0, carry = 1
             }
             else
             {
