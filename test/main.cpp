@@ -193,7 +193,7 @@ int main()
 
     std::cout<<"Decoder output: "<<dc.d_res(0)<<"-"<<dc.d_res(1)<<"-"<<dc.d_res(2)<<"-"<<dc.d_res(3)<<std::endl;
 
-    ec.setin(0, 1, 0, 0);
+    ec.setin(0, 1, 0, 0); //encoder
     std::cout<<"Encoder output: "<<ec.e_res(0)<<ec.e_res(1)<<std::endl;
 }
 
