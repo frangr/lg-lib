@@ -1,4 +1,4 @@
-#include "ldr.h"
+#include "../lglib/ldr.h"
 #include<iostream>
 
 int main()
@@ -111,15 +111,23 @@ int main()
     NEGOR ngr(3);
     OR r(2);
     MEM mm(2, 4);
+    NOT n1, n2, n3, n4, n5;
+
+
 
     xr.inpt(1, 0);
     ad.inpt(1, 1);
-    nad.inpt(ldr::NOT(1), ldr::NOT(1));
-    nor.inpt(ldr::NOT(0), 0);
+    n1.not_input(1);
+    n2.not_input(1);
+    n3.not_input(0);
+    nad.inpt(n1.not_res(), n2.not_res());
+    nor.inpt(n3.not_res(), 0);
     ngad.inpt(0, 1);
 
-    xnr.inpt(ldr::NOT(xr.res()), ad.res(), nad.res());
-    ngr.inpt(nor.res(), ldr::NOT(ngad.res()), ngad.res());
+    n4.not_input(xr.res());
+    n5.not_input(ngad.res());
+    xnr.inpt(n4.not_res(), ad.res(), nad.res());
+    ngr.inpt(nor.res(), n5.not_res(), ngad.res());
 
     r.inpt(xnr.res(), ngr.res());
     std::cout<<"circ result: "<<r.res()<<std::endl;
@@ -159,22 +167,22 @@ int main()
              <<"overflow flag: "<<al.getflag(2)<<std::endl
              <<"division by zero flag: "<<al.getflag(3)<<std::endl;
 
-    MUL ml(2, 2); //multiplexer with two 2-bit inputs
+    MUL mll(2, 2); //multiplexer with two 2-bit inputs
 
-    ml.mulf(0, 0, //input data
-            1, 1);
+    mll.set_input(0, 0, //input data
+                 1, 1);
 
-    ml.muln(0); //00
-    std::cout<<"multiplexer 0: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
-    ml.muln(1); //11
-    std::cout<<"multiplexer 1: "<<ml.m_res(0)<<ml.m_res(1)<<std::endl;
+    mll.set_output(0); //00
+    std::cout<<"multiplexer 0: "<<mll.m_res(0)<<mll.m_res(1)<<std::endl;
+    mll.set_output(1); //11
+    std::cout<<"multiplexer 1: "<<mll.m_res(0)<<mll.m_res(1)<<std::endl;
 
-    DMUL dm(2, 4);
+    DMUL dm(4, 2);
     DEC  dc(2, 4);
     ENC  ec(4, 2);
 
-    dm.setin(1, 1);
-    dm.setln(1, 1);
+    dm.set_input(1, 1);
+    dm.set_output(1, 0);
 
     std::cout<<"Demultiplexer output: "
              <<dm.m_res(0)
@@ -191,9 +199,31 @@ int main()
 
     dc.setin(1, 1);
 
-    std::cout<<"Decoder output: "<<dc.d_res(0)<<"-"<<dc.d_res(1)<<"-"<<dc.d_res(2)<<"-"<<dc.d_res(3)<<std::endl;
+    std::cout<<"Decoder output: "<<dc.res(0)<<"-"<<dc.res(1)<<"-"<<dc.res(2)<<"-"<<dc.res(3)<<std::endl;
 
-    ec.setin(0, 1, 0, 0); //encoder
-    std::cout<<"Encoder output: "<<ec.e_res(0)<<ec.e_res(1)<<std::endl;
+    ec.setin(0, 1, 0, 0);
+    std::cout<<"Encoder output: "<<ec.res(0)<<ec.res(1)<<std::endl;
+
+    ic* ict = new DEC(2, 4);
+    ml* test = new MUL(2, 2);
+    gate* gtt = new AND(2);
+
+
+    gtt->inpt(1, 0);
+    std::cout<<"gtt AND: "<<gtt->res()<<std::endl;
+    delete gtt;
+
+    gtt = new OR(3);
+    gtt->inpt(1, 1, 1);
+    std::cout<<"gtt OR: "<<gtt->res()<<std::endl;
+
+    ict->setin(1, 1);
+    std::cout<<"ict Decoder output: "<<ict->res(0)<<"-"<<ict->res(1)<<"-"<<ict->res(2)<<"-"<<ict->res(3)<<std::endl;
+
+    test->set_input(0, 0, //input data
+                 1, 1);
+    test->set_output(0); //00
+    std::cout<<"test multiplexer 0: "<<test->m_res(0)<<test->m_res(1)<<std::endl;
+    test->set_output(1); //11
+    std::cout<<"test multiplexer 1: "<<test->m_res(0)<<test->m_res(1)<<std::endl;
 }
-
