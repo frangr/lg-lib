@@ -13,10 +13,10 @@ public:
     void set_rw(ldr::bit rwf);
 
     template<typename... T>
-    void memf(T&&... adr); //flag lettura/scrittura e indirizzo
+    void memf(T... adr); //flag lettura/scrittura e indirizzo
 
     template<typename... T>
-    void setwd(T&&... wdt); //dati da scrivere
+    void setwd(T... wdt); //dati da scrivere
 
     ldr::bit res(int idx) const; //parola letta
 private:
@@ -28,7 +28,7 @@ private:
 };
 
 template<typename... T>
-void MEM::memf(T&&... adr)//, T&&... wdat)
+void MEM::memf(T... adr)//, T&&... wdat)
 {
     int ar = ldr::btn(adr...);
 
@@ -45,7 +45,7 @@ void MEM::memf(T&&... adr)//, T&&... wdat)
 }
 
 template<typename... T>
-void MEM::setwd(T&&... wdt)
+void MEM::setwd(T... wdt)
 {
     ldr::bit bf[sz] = {std::forward<ldr::bit>(wdt)...};
 

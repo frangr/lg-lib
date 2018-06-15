@@ -12,7 +12,7 @@ namespace ldr
 
 
     template<typename... T>
-    size_t btn(T&&... n); //bit a decimale
+    size_t btn(T... n); //bit a decimale
 
     size_t atn(bit vc[], int sz, int spos=0, int idx=0); //array di bit a decimale
 
@@ -20,7 +20,7 @@ namespace ldr
 }
 
 template<typename... T>
-size_t ldr::btn(T&&... n)
+size_t ldr::btn(T... n)
 {
     int s = sizeof...(T);
     size_t bn = 0, pn = 1;

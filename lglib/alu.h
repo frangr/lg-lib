@@ -16,7 +16,7 @@ public:
     void set_op(ldr::bit ope1, ldr::bit ope2);
 
     template<typename... T>
-    void aluf(T&&... ipt);
+    void aluf(T... ipt);
 
     ldr::bit r_res(int idx) const;
 
@@ -40,7 +40,7 @@ private:
 };
 
 template<typename... T>
-void ALU::aluf(T&&... ipt)
+void ALU::aluf(T... ipt)
 {
     //ASSERT
     ldr::bit bf[l*2] = {std::forward<ldr::bit>(ipt)...};
